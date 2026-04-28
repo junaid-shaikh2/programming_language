@@ -1,0 +1,1 @@
+"""Forex direction predictor package."""
