@@ -1,18 +1,14 @@
 from __future__ import annotations
-
-import os
+import streamlit as st
 from dataclasses import dataclass
-
-from dotenv import load_dotenv
-
-
-load_dotenv()
-
 
 @dataclass(frozen=True)
 class Settings:
-    alpha_vantage_api_key: str = os.getenv("ALPHA_VANTAGE_API_KEY", "")
-    newsapi_key: str = os.getenv("NEWSAPI_KEY", "")
-
+    # We use st.secrets because os.getenv doesn't work on Streamlit Cloud
+    alpha_vantage_api_key: str = st.secrets.get("ALPHA_VANTAGE_API_KEY", "")
+    newsapi_key: str = st.secrets.get("NEWSAPI_KEY", "")
 
 settings = Settings()
+
+
+
